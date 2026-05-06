@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anonymous Project Page</title>
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f7f8;
+      --card: #ffffff;
+      --card-2: #fafafa;
+      --fg: #111111;
+      --muted: #666666;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --accent-2: #dc2626;
+      --shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    html[data-theme="dark"] {
+      --bg: #0f1115;
+      --bg-soft: #171922;
+      --card: #171922;
+      --card-2: #1d2230;
+      --fg: #f2f4f8;
+      --muted: #a9b0bd;
+      --line: #2b3243;
+      --accent: #7aa2ff;
+      --accent-2: #ff7a7a;
+      --shadow: 0 14px 34px rgba(0,0,0,0.28);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 28px 20px 70px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 26px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn, .chip {
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--fg);
+      padding: 9px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn:hover, .chip:hover {
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    header.hero {
+      padding: 34px 0 10px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .hero .subtitle {
+      margin: 16px auto 0;
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero .pill-row {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    nav.quicknav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 28px 0 32px;
+    }
+
+    .quicknav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quicknav a {
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+    }
+
+    .quicknav a:hover {
+      background: var(--bg-soft);
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    section {
+      margin-top: 34px;
+      scroll-margin-top: 90px;
+    }
+
+    .section-head {
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.55rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-note {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 8px 0 20px;
+    }
+
+    .swatch {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .examples {
+      display: grid;
+      gap: 18px;
+    }
+
+    details.example {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    details.example summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    details.example summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .summary-title {
+      font-weight: 700;
+      font-size: 1.06rem;
+    }
+
+    .summary-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .summary-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    .chev {
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg);
+      transition: transform 0.18s ease;
+      margin-top: -4px;
+    }
+
+    details[open] .chev {
+      transform: rotate(225deg);
+      margin-top: 4px;
+    }
+
+    .example-body {
+      padding: 0 22px 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .video-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .video-block {
+      background: var(--card-2);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .video-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .video-tag {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 600;
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+    }
+
+    .blue { color: #2563eb; }
+    .red { color: #dc2626; }
+
+    .video-shell {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      aspect-ratio: 16 / 9;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      background: #000;
+    }
+
+    .video-meta {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .mini-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .mini-btn {
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--fg);
+      padding: 7px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.87rem;
+    }
+
+    footer {
+      margin-top: 46px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .video-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+      details.example summary {
+        padding: 16px;
+      }
+      .example-body {
+        padding: 0 16px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">Anonymous supplementary project page</div>
+      <div class="toolbar">
+        <a class="chip" href="#results">Browse examples</a>
+        <a class="chip" href="#results">Results</a>
+        <button class="btn" id="themeToggle" type="button">Toggle theme</button>
+      </div>
+    </div>
+
+    <header class="hero">
+      <h1>Progressive Risk Estimation for Accident Anticipation</h1>
+      <p class="subtitle">
+        This page presents qualitative video comparisons between a baseline model and our method.
+        The content is intentionally anonymized for double-blind review.
+      </p>
+      <div class="pill-row">
+        <div class="pill">
+          <a href="https://github.com/academic-anon/pre-act" target="_blank" rel="noopener noreferrer">
+            Project repository
+          </a>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <nav class="quicknav">
+    <div class="quicknav-inner">
+      <a href="#results">Video comparisons</a>
+      <a href="#failures">Failures</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <section id="results">
+      <div class="section-head">
+        <h2>Qualitative Comparisons</h2>
+        <div class="section-note">Each example supports synchronized playback for side-by-side inspection.</div>
+      </div>
+
+      <div class="controls">
+        <button class="btn" type="button" onclick="playAllVisible()">Play all open examples</button>
+        <button class="btn" type="button" onclick="pauseAllVisible()">Pause all open examples</button>
+        <button class="btn" type="button" onclick="muteAll()">Mute all</button>
+        <button class="btn" type="button" onclick="unmuteAll()">Unmute all</button>
+        <button class="btn" type="button" onclick="openAllExamples()">Open all</button>
+        <button class="btn" type="button" onclick="closeAllExamples()">Close all</button>
+      </div>
+
+      <div class="legend">
+        <span><span class="swatch" style="background:#2563eb"></span>Baseline / BCE</span>
+        <span><span class="swatch" style="background:#dc2626"></span>Our method</span>
+      </div>
+
+      <div class="examples" id="examplesContainer"></div>
+    </section>
+
+    <section id="failures">
+      <div class="section-head">
+        <h2>Failure Cases</h2>
+        <div class="section-note">Representative failure modes from our method only.</div>
+      </div>
+      <div class="card" style="margin-bottom:18px;">
+        <p style="margin:0; color:var(--muted);">
+          This section highlights representative failure cases for our method. These examples provide a balanced view of model behavior and illustrate scenarios that remain challenging.
+        </p>
+      </div>
+      <div class="examples" id="failuresContainer" style="margin-top:18px;"></div>
+    </section>
+
+    <footer>
+      This anonymous page is intended for supplementary qualitative comparisons during peer review.
+      Repository:
+      <a href="https://github.com/academic-anon/pre-act" target="_blank" rel="noopener noreferrer">
+        github.com/academic-anon/pre-act
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    const examples = [
+      {
+        id: 'ex01',
+        title: 'Example 1',
+        short: '',
+        details: 'Low pre-anomaly risk score.',
+        baselineVideo: 'videos/CAP/baseline/5_10514_41586ed3_score.mp4',
+        oursVideo: 'videos/CAP/ours/5_10514_41586ed3_score.mp4',
+        baselineLabel: 'BCE / Baseline',
+        oursLabel: 'Our method',
+        tags: ['CAP']
+      },
+      {
+        id: 'ex02',
+        title: 'Example 2',
+        short: '',
+        details: 'Low false pre-anomaly alarms, and continous risk progress in critical zone.',
+        baselineVideo: 'videos/CAP/baseline/5_11508_bd8bb5d9_score.mp4',
+        oursVideo: 'videos/CAP/ours/5_11508_bd8bb5d9_score.mp4',
+        baselineLabel: 'BCE / Baseline',
+        oursLabel: 'Our method',
+        tags: ['CAP']
+      },
+      {
+        id: 'ex03',
+        title: 'Example 3',
+        short: '',
+        details: 'Baseline gives low risk for the near accident frames.',
+        baselineVideo: 'videos/CAP/baseline/11_8198_17dabd06_score.mp4',
+        oursVideo: 'videos/CAP/ours/11_8198_17dabd06_score.mp4',
+        baselineLabel: 'BCE / Baseline',
+        oursLabel: 'Our method',
+        tags: ['CAP']
+      },
+      {
+        id: 'ex04',
+        title: 'Example 4',
+        short: '',
+        details: 'No false alarms before anomaly onset.',
+        baselineVideo: 'videos/CAP/baseline/11_8605_37148f95_score.mp4',
+        oursVideo: 'videos/CAP/ours/11_8605_37148f95_score.mp4',
+        baselineLabel: 'BCE / Baseline',
+        oursLabel: 'Our method',
+        tags: ['CAP']
+      },
+      {
+        id: 'ex05',
+        title: 'Example 5',
+        short: '',
+        details: 'Early alarm before accident.',
+        baselineVideo: 'videos/CAP/baseline/6_9495_c8cc447b_score.mp4',
+        oursVideo: 'videos/CAP/ours/6_9495_c8cc447b_score.mp4',
+        baselineLabel: 'BCE / Baseline',
+        oursLabel: 'Our method',
+        tags: ['CAP']
+      },
+
+      {
+        id: 'ex06',
+        title: 'Example 6',
+        short: '',
+        details: 'Baseline gives low risk for the near accident frames.',
+        baselineVideo: 'videos/DADA/baseline/6_27_dde3f699_score.mp4',
+        oursVideo: 'videos/DADA/ours/6_27_dde3f699_score.mp4',
+        baselineLabel: 'BCE / Baseline',
+        oursLabel: 'Our method',
+        tags: ['DADA']
+      },
+      {
+        id: 'ex07',
+        title: 'Example 7',
+        short: '',
+        details: 'No false alarms before anomaly onset. Our model gives early warning.',
+        baselineVideo: 'videos/DADA/baseline/11_32_d9304b62_score.mp4',
+        oursVideo: 'videos/DADA/ours/11_32_d9304b62_score.mp4',
+        baselineLabel: 'BCE / Baseline',
+        oursLabel: 'Our method',
+        tags: ['DADA']
+      },
+      {
+        id: 'ex08',
+        title: 'Example 8',
+        short: '',
+        details: 'No false alarms before anomaly onset. Our model gives early warning.',
+        baselineVideo: 'videos/DADA/baseline/7_5_3b2e7666_score.mp4',
+        oursVideo: 'videos/DADA/ours/7_5_3b2e7666_score.mp4',
+        baselineLabel: 'BCE / Baseline',
+        oursLabel: 'Our method',
+        tags: ['DADA']
+      },
+      {
+        id: 'ex09',
+        title: 'Example 9',
+        short: '',
+        details: 'Baseline gives low risk for the near accident frames.',
+        baselineVideo: 'videos/DADA/baseline/6_28_6d147843_score.mp4',
+        oursVideo: 'videos/DADA/ours/6_28_6d147843_score.mp4',
+        baselineLabel: 'BCE / Baseline',
+        oursLabel: 'Our method',
+        tags: ['DADA']
+      },
+      {
+        id: 'ex10',
+        title: 'Example 10',
+        short: '',
+        details: 'No false alarms before anomaly onset. Our model gives early warning.',
+        baselineVideo: 'videos/DADA/baseline/11_116_4245ce80_score.mp4',
+        oursVideo: 'videos/DADA/ours/11_116_4245ce80_score.mp4',
+        baselineLabel: 'BCE / Baseline',
+        oursLabel: 'Our method',
+        tags: ['DADA']
+      }
+    ];
+
+    const failures = [
+      {
+        id: 'fail01',
+        title: 'Failure 1',
+        short: 'Representative failure case from our method on CAP dataset.',
+        details: 'Model fails to understand the car is drifting on a snowy road.',
+        oursVideo: 'videos/CAP/ours/14_10624_4ae0b749_score.mp4', 
+        oursLabel: 'Our method',
+        tags: ['Failure', 'CAP']
+      },
+      {
+        id: 'fail02',
+        title: 'Failure 2',
+        short: 'Representative failure case from our method on CAP dataset.',
+        details: 'Model fails to understand the car is drifting on a snowy road.',
+        oursVideo: 'videos/CAP/ours/14_10354_8af676e7_score.mp4',
+        oursLabel: 'Our method',
+        tags: ['Failure', 'CAP']
+      },
+      {
+        id: 'fail03',
+        title: 'Failure 3',
+        short: 'Representative failure case from our method on DADA dataset.',
+        details: 'Model fails to locate the motorbike coming between the cars.',
+        oursVideo: 'videos/DADA/ours/5_45_ec7d4377_score.mp4',
+        oursLabel: 'Our method',
+        tags: ['Failure', 'DADA']
+      },
+      {
+        id: 'fail04',
+        title: 'Failure 4',
+        short: 'Representative failure case from our method on DADA dataset.',
+        details: 'Model fails to predict the continuos movement of the car in the parking lot.',
+        oursVideo: 'videos/DADA/ours/10_155_32d0df28_score.mp4',
+        oursLabel: 'Our method',
+        tags: ['Failure', 'DADA']
+      }
+    ];
+
+    function applyInitialTheme() {
+      const stored = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = stored || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    }
+
+    function createExampleBlock(ex, open = false) {
+      const details = document.createElement('details');
+      details.className = 'example';
+      details.id = ex.id;
+      if (open) details.open = true;
+
+      const tagText = (ex.tags || []).join(' · ');
+      details.innerHTML = `
+        <summary>
+          <div class="summary-left">
+            <div class="summary-title">${ex.title}</div>
+            <div class="summary-desc">${ex.short}</div>
+          </div>
+          <div class="summary-right">
+            <span>${tagText}</span>
+            <span class="chev"></span>
+          </div>
+        </summary>
+        <div class="example-body">
+          <p style="margin:16px 0 0; color:var(--muted);">${ex.details}</p>
+          <div class="mini-actions">
+            <button class="mini-btn" type="button" data-action="sync-play">Play both</button>
+            <button class="mini-btn" type="button" data-action="sync-pause">Pause both</button>
+            <button class="mini-btn" type="button" data-action="sync-restart">Restart</button>
+            <button class="mini-btn" type="button" data-action="sync-mute">Mute both</button>
+          </div>
+          <div class="video-row">
+            <div class="video-block">
+              <div class="video-label"><span class="blue">${ex.baselineLabel}</span><span class="video-tag">blue</span></div>
+              <div class="video-shell">
+                <video controls muted preload="metadata" playsinline data-group="${ex.id}" data-role="baseline">
+                  <source src="${ex.baselineVideo}" type="video/mp4">
+                </video>
+              </div>
+              <div class="video-meta">Baseline prediction visualization.</div>
+            </div>
+            <div class="video-block">
+              <div class="video-label"><span class="red">${ex.oursLabel}</span><span class="video-tag">red</span></div>
+              <div class="video-shell">
+                <video controls muted preload="metadata" playsinline data-group="${ex.id}" data-role="ours">
+                  <source src="${ex.oursVideo}" type="video/mp4">
+                </video>
+              </div>
+              <div class="video-meta">Prediction visualization from our method.</div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const [v1, v2] = details.querySelectorAll('video');
+      setupSyncPair(v1, v2);
+
+      details.querySelector('[data-action="sync-play"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        syncPairAction(details, 'play');
+      });
+
+      details.querySelector('[data-action="sync-pause"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        syncPairAction(details, 'pause');
+      });
+
+      details.querySelector('[data-action="sync-restart"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        syncPairAction(details, 'restart');
+      });
+
+      details.querySelector('[data-action="sync-mute"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        syncPairAction(details, 'mute');
+      });
+
+      return details;
+    }
+
+    function getPair(detailsEl) {
+      return Array.from(detailsEl.querySelectorAll('video'));
+    }
+
+    function syncPairAction(detailsEl, action) {
+      const [a, b] = getPair(detailsEl);
+      if (!a || !b) return;
+
+      if (action === 'play') {
+        const t = Math.min(a.currentTime || 0, b.currentTime || 0);
+        a.currentTime = t;
+        b.currentTime = t;
+        a.play();
+        b.play();
+      }
+
+      if (action === 'pause') {
+        a.pause();
+        b.pause();
+      }
+
+      if (action === 'restart') {
+        a.pause();
+        b.pause();
+        a.currentTime = 0;
+        b.currentTime = 0;
+      }
+
+      if (action === 'mute') {
+        a.muted = true;
+        b.muted = true;
+      }
+    }
+
+    function setupSyncPair(v1, v2) {
+      if (!v1 || !v2) return;
+      let lock = false;
+
+      function syncFrom(source, target) {
+        if (lock) return;
+        lock = true;
+        const dt = Math.abs((target.currentTime || 0) - (source.currentTime || 0));
+        if (dt > 0.08) target.currentTime = source.currentTime;
+        if (Math.abs(target.playbackRate - source.playbackRate) > 0.001) {
+          target.playbackRate = source.playbackRate;
+        }
+        lock = false;
+      }
+
+      v1.addEventListener('play', () => { if (v2.paused) v2.play(); });
+      v2.addEventListener('play', () => { if (v1.paused) v1.play(); });
+      v1.addEventListener('pause', () => { if (!v2.paused) v2.pause(); });
+      v2.addEventListener('pause', () => { if (!v1.paused) v1.pause(); });
+      v1.addEventListener('seeking', () => syncFrom(v1, v2));
+      v2.addEventListener('seeking', () => syncFrom(v2, v1));
+      v1.addEventListener('ratechange', () => { v2.playbackRate = v1.playbackRate; });
+      v2.addEventListener('ratechange', () => { v1.playbackRate = v2.playbackRate; });
+      v1.addEventListener('timeupdate', () => syncFrom(v1, v2));
+      v2.addEventListener('timeupdate', () => syncFrom(v2, v1));
+    }
+
+    function playAllVisible() {
+      document.querySelectorAll('#examplesContainer details.example[open]').forEach(d => syncPairAction(d, 'play'));
+    }
+
+    function pauseAllVisible() {
+      document.querySelectorAll('#examplesContainer details.example[open]').forEach(d => syncPairAction(d, 'pause'));
+    }
+
+    function muteAll() {
+      document.querySelectorAll('video').forEach(v => { v.muted = true; });
+    }
+
+    function unmuteAll() {
+      document.querySelectorAll('video').forEach(v => { v.muted = false; });
+    }
+
+    function openAllExamples() {
+      document.querySelectorAll('details.example').forEach(d => { d.open = true; });
+    }
+
+    function closeAllExamples() {
+      document.querySelectorAll('details.example').forEach(d => { d.open = false; });
+    }
+
+    function createFailureBlock(ex, open = false) {
+      const details = document.createElement('details');
+      details.className = 'example';
+      details.id = ex.id;
+      if (open) details.open = true;
+
+      const tagText = (ex.tags || []).join(' · ');
+      details.innerHTML = `
+        <summary>
+          <div class="summary-left">
+            <div class="summary-title">${ex.title}</div>
+            <div class="summary-desc">${ex.short}</div>
+          </div>
+          <div class="summary-right">
+            <span>${tagText}</span>
+            <span class="chev"></span>
+          </div>
+        </summary>
+        <div class="example-body">
+          <p style="margin:16px 0 0; color:var(--muted);">${ex.details}</p>
+          <div class="mini-actions">
+            <button class="mini-btn" type="button" data-action="play-single">Play</button>
+            <button class="mini-btn" type="button" data-action="pause-single">Pause</button>
+            <button class="mini-btn" type="button" data-action="restart-single">Restart</button>
+            <button class="mini-btn" type="button" data-action="mute-single">Mute</button>
+          </div>
+          <div class="video-row" style="grid-template-columns: minmax(0, 1fr);">
+            <div class="video-block">
+              <div class="video-label"><span class="red">${ex.oursLabel}</span><span class="video-tag">failure</span></div>
+              <div class="video-shell">
+                <video controls muted preload="metadata" playsinline>
+                  <source src="${ex.oursVideo}" type="video/mp4">
+                </video>
+              </div>
+              <div class="video-meta">Failure case visualization from our method.</div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const v = details.querySelector('video');
+
+      details.querySelector('[data-action="play-single"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        v.play();
+      });
+
+      details.querySelector('[data-action="pause-single"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        v.pause();
+      });
+
+      details.querySelector('[data-action="restart-single"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        v.pause();
+        v.currentTime = 0;
+      });
+
+      details.querySelector('[data-action="mute-single"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        v.muted = true;
+      });
+
+      return details;
+    }
+
+    function renderPage() {
+      const container = document.getElementById('examplesContainer');
+      const failureContainer = document.getElementById('failuresContainer');
+
+      examples.forEach((ex, idx) => {
+        container.appendChild(createExampleBlock(ex, idx < 2));
+      });
+
+      failures.forEach((ex, idx) => {
+        failureContainer.appendChild(createFailureBlock(ex, idx === 0));
+      });
+    }
+
+    applyInitialTheme();
+    renderPage();
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  </script>
+</body>
+</html>
