@@ -413,13 +413,13 @@
     <header class="hero">
       <h1>Progressive Risk Estimation for Accident Anticipation</h1>
       <p class="subtitle">
-        This page presents qualitative video comparisons between a baseline model and our method.
+        This page presents qualitative video comparisons between our method and a classification-based baseline, following the common formulation used by most existing accident anticipation methods.        
         The content is intentionally anonymized for double-blind review.
-	We share our code in the project repository as well.
+	      We share our code in the project repository as well.
       </p>
       <div class="pill-row">
         <div class="pill">
-          <a href="https://github.com/academic-anon/pre-act" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/academic-anon/PRE-ACT" target="_blank" rel="noopener noreferrer">
             Project repository
           </a>
         </div>
@@ -451,8 +451,8 @@
       </div>
 
       <div class="legend">
-        <span><span class="swatch" style="background:#2563eb"></span>Baseline / BCE</span>
-        <span><span class="swatch" style="background:#dc2626"></span>Our method</span>
+        <span><span class="swatch" style="background:#dc2626"></span>Baseline / BCE</span>
+        <span><span class="swatch" style="background:#2563eb"></span>Our method</span>
       </div>
 
       <div class="examples" id="examplesContainer"></div>
@@ -489,7 +489,7 @@
         details: 'Low pre-anomaly risk score.',
         baselineVideo: 'videos/CAP/baseline/5_10514_41586ed3_score.mp4',
         oursVideo: 'videos/CAP/ours/5_10514_41586ed3_score.mp4',
-        baselineLabel: 'BCE / Baseline',
+        baselineLabel: 'Baseline / BCE',
         oursLabel: 'Our method',
         tags: ['CAP']
       },
@@ -500,7 +500,7 @@
         details: 'Low false pre-anomaly alarms, and continous risk progress in critical zone.',
         baselineVideo: 'videos/CAP/baseline/5_11508_bd8bb5d9_score.mp4',
         oursVideo: 'videos/CAP/ours/5_11508_bd8bb5d9_score.mp4',
-        baselineLabel: 'BCE / Baseline',
+        baselineLabel: 'Baseline / BCE',
         oursLabel: 'Our method',
         tags: ['CAP']
       },
@@ -511,7 +511,7 @@
         details: 'Baseline gives low risk for the near accident frames.',
         baselineVideo: 'videos/CAP/baseline/11_8198_17dabd06_score.mp4',
         oursVideo: 'videos/CAP/ours/11_8198_17dabd06_score.mp4',
-        baselineLabel: 'BCE / Baseline',
+        baselineLabel: 'Baseline / BCE',
         oursLabel: 'Our method',
         tags: ['CAP']
       },
@@ -522,7 +522,7 @@
         details: 'No false alarms before anomaly onset.',
         baselineVideo: 'videos/CAP/baseline/11_8605_37148f95_score.mp4',
         oursVideo: 'videos/CAP/ours/11_8605_37148f95_score.mp4',
-        baselineLabel: 'BCE / Baseline',
+        baselineLabel: 'Baseline / BCE',
         oursLabel: 'Our method',
         tags: ['CAP']
       },
@@ -533,7 +533,7 @@
         details: 'Early alarm before accident.',
         baselineVideo: 'videos/CAP/baseline/6_9495_c8cc447b_score.mp4',
         oursVideo: 'videos/CAP/ours/6_9495_c8cc447b_score.mp4',
-        baselineLabel: 'BCE / Baseline',
+        baselineLabel: 'Baseline / BCE',
         oursLabel: 'Our method',
         tags: ['CAP']
       },
@@ -545,7 +545,7 @@
         details: 'Baseline gives low risk for the near accident frames.',
         baselineVideo: 'videos/DADA/baseline/6_27_dde3f699_score.mp4',
         oursVideo: 'videos/DADA/ours/6_27_dde3f699_score.mp4',
-        baselineLabel: 'BCE / Baseline',
+        baselineLabel: 'Baseline / BCE',
         oursLabel: 'Our method',
         tags: ['DADA']
       },
@@ -556,7 +556,7 @@
         details: 'No false alarms before anomaly onset. Our model gives early warning.',
         baselineVideo: 'videos/DADA/baseline/11_32_d9304b62_score.mp4',
         oursVideo: 'videos/DADA/ours/11_32_d9304b62_score.mp4',
-        baselineLabel: 'BCE / Baseline',
+        baselineLabel: 'Baseline / BCE',
         oursLabel: 'Our method',
         tags: ['DADA']
       },
@@ -567,7 +567,7 @@
         details: 'No false alarms before anomaly onset. Our model gives early warning.',
         baselineVideo: 'videos/DADA/baseline/7_5_3b2e7666_score.mp4',
         oursVideo: 'videos/DADA/ours/7_5_3b2e7666_score.mp4',
-        baselineLabel: 'BCE / Baseline',
+        baselineLabel: 'Baseline / BCE',
         oursLabel: 'Our method',
         tags: ['DADA']
       },
@@ -578,7 +578,7 @@
         details: 'Baseline gives low risk for the near accident frames.',
         baselineVideo: 'videos/DADA/baseline/6_28_6d147843_score.mp4',
         oursVideo: 'videos/DADA/ours/6_28_6d147843_score.mp4',
-        baselineLabel: 'BCE / Baseline',
+        baselineLabel: 'Baseline / BCE',
         oursLabel: 'Our method',
         tags: ['DADA']
       },
@@ -589,7 +589,7 @@
         details: 'No false alarms before anomaly onset. Our model gives early warning.',
         baselineVideo: 'videos/DADA/baseline/11_116_4245ce80_score.mp4',
         oursVideo: 'videos/DADA/ours/11_116_4245ce80_score.mp4',
-        baselineLabel: 'BCE / Baseline',
+        baselineLabel: 'Baseline / BCE',
         oursLabel: 'Our method',
         tags: ['DADA']
       }
@@ -676,7 +676,7 @@
           </div>
           <div class="video-row">
             <div class="video-block">
-              <div class="video-label"><span class="blue">${ex.baselineLabel}</span><span class="video-tag">blue</span></div>
+              <div class="video-label"><span class="red">${ex.baselineLabel}</span><span class="video-tag">red</span></div>
               <div class="video-shell">
                 <video controls muted preload="metadata" playsinline data-group="${ex.id}" data-role="baseline">
                   <source src="${ex.baselineVideo}" type="video/mp4">
@@ -685,7 +685,7 @@
               <div class="video-meta">Baseline prediction visualization.</div>
             </div>
             <div class="video-block">
-              <div class="video-label"><span class="red">${ex.oursLabel}</span><span class="video-tag">red</span></div>
+              <div class="video-label"><span class="blue">${ex.oursLabel}</span><span class="video-tag">blue</span></div>
               <div class="video-shell">
                 <video controls muted preload="metadata" playsinline data-group="${ex.id}" data-role="ours">
                   <source src="${ex.oursVideo}" type="video/mp4">
@@ -836,7 +836,7 @@
           </div>
           <div class="video-row" style="grid-template-columns: minmax(0, 1fr);">
             <div class="video-block">
-              <div class="video-label"><span class="red">${ex.oursLabel}</span><span class="video-tag">failure</span></div>
+              <div class="video-label"><span class="blue">${ex.oursLabel}</span><span class="video-tag">failure</span></div>
               <div class="video-shell">
                 <video controls muted preload="metadata" playsinline>
                   <source src="${ex.oursVideo}" type="video/mp4">
